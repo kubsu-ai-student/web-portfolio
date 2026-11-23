@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141119">
+  <meta name="description" content="КАДР — демонстрационный сайт фестиваля независимого кино с программой и избранным.">
+  <link rel="stylesheet" href="kadr.css">
+  <script src="kadr.js" defer></script>
+  <title>КАДР — фестиваль независимого кино</title>
+</head>
+<body>
+  <header class="header wrap">
+    <a class="brand" href="#" aria-label="КАДР — главная">КАДР<span>.</span></a>
+    <nav aria-label="Главное меню"><a href="#program">Программа</a><a href="#about">О фестивале</a></nav>
+    <button class="saved-button" type="button" id="saved" aria-pressed="false">Мой список <span id="saved-count">0</span></button>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner"><p class="overline">Краснодар · 16–18 апреля 2027</p>
+      <h1 id="hero-title">После<br>титров<span>.</span></h1>
+      <p class="hero-copy">Три дня независимого кино. Шесть фильмов о городах, людях и том, что остаётся за кадром.</p>
+      <a class="primary" href="#program">Смотреть программу</a></div>
+    </section>
+    <section class="program wrap" id="program">
+      <div class="program-heading"><div><p class="overline">Расписание показов</p><h2 id="program-title">Программа</h2></div>
+        <div class="dates" aria-label="День показа">
+          <button type="button" data-day="all" aria-pressed="true">Все дни</button>
+          <button type="button" data-day="16" aria-pressed="false">16 апр</button>
+          <button type="button" data-day="17" aria-pressed="false">17 апр</button>
+          <button type="button" data-day="18" aria-pressed="false">18 апр</button>
+        </div>
+      </div>
+      <p class="visually-hidden" id="count-message" aria-live="polite"></p>
+      <div class="films" id="films"></div>
+      <p id="empty" class="empty" hidden>Здесь появятся фильмы, которые вы сохранили.</p>
+    </section>
+    <section class="about" id="about"><div class="wrap about-inner"><div><p class="overline">О фестивале</p><h2>Увидеть иначе.</h2></div><p>Программа объединяет шесть вымышленных фильмов. В карточке каждого — время показа, жанр и короткий синопсис. Соберите личную подборку, чтобы вернуться к ней позже.</p></div></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="#">КАДР<span>.</span></a><p>Демонстрационный проект · Фильмы и показы вымышлены</p></footer>
+  <dialog id="film-dialog" aria-labelledby="film-title">
+    <button class="close" type="button" aria-label="Закрыть карточку">×</button>
+    <img id="film-image" alt="">
+    <div class="film-detail"><p class="overline" id="film-time"></p><h2 id="film-title"></h2><p id="film-meta"></p><p id="film-summary"></p><button type="button" class="primary" id="film-save"></button></div>
+  </dialog>
+</body>
+</html>

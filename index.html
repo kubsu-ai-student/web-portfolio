@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111617">
+  <meta name="description" content="VECTOR Grid — демонстрационная панель энергомониторинга зданий.">
+  <link rel="stylesheet" href="vector.css">
+  <script src="vector.js" defer></script>
+  <title>VECTOR Grid — энергомониторинг</title>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <a class="brand" href="#overview"><span class="mark" aria-hidden="true">V</span><span>VECTOR<small> GRID</small></span></a>
+      <nav aria-label="Разделы панели">
+        <a class="current" href="#overview">Обзор</a>
+        <a href="#demand">Потребление</a>
+        <a href="#buildings">Объекты</a>
+      </nav>
+      <p class="rail-note">Демонстрационный режим</p>
+    </aside>
+    <main id="overview">
+      <header class="top"><span>Энергомониторинг</span><span class="demo"><i></i> Демо-данные</span></header>
+      <section class="intro">
+        <div><p class="kicker">Мониторинг зданий</p><h1>Энергия в цифрах.</h1><p class="muted">Суточное потребление, пиковая нагрузка и энергомикс объектов.</p></div>
+        <button class="export" id="export" type="button">Скачать CSV <span aria-hidden="true">↓</span></button>
+      </section>
+      <section class="toolbar" aria-label="Настройки отчёта">
+        <label class="selector">Объект <select id="site"><option value="all">Все объекты</option><option value="north">Север · офис</option><option value="west">Запад · склад</option><option value="south">Юг · студия</option></select></label>
+        <div class="segmented" aria-label="Период"><button type="button" data-range="7" aria-pressed="true">7 дней</button><button type="button" data-range="14" aria-pressed="false">14 дней</button><button type="button" data-range="30" aria-pressed="false">30 дней</button></div>
+      </section>
+      <section class="metrics" aria-label="Показатели" aria-live="polite">
+        <article><span>Потребление</span><strong><b id="total"></b><small> кВт·ч</small></strong><p id="total-note"></p></article>
+        <article><span>Пиковый день</span><strong><b id="peak"></b><small> кВт·ч</small></strong><p id="peak-note"></p></article>
+        <article><span>Солнечная энергия</span><strong><b id="solar"></b><small> %</small></strong><p>Доля в энергомиксе</p></article>
+      </section>
+      <div class="panels" id="demand">
+        <section class="panel chart-panel" aria-labelledby="chart-title">
+          <div class="panel-heading"><div><p class="kicker">Динамика</p><h2 id="chart-title">Расход по дням</h2></div><span class="chart-key"><i></i> кВт·ч</span></div>
+          <div id="plot" class="plot"><canvas id="chart" role="img" aria-label="График суточного потребления"></canvas><div class="tooltip" id="tooltip" hidden></div></div>
+          <p class="chart-foot" id="chart-summary"></p>
+        </section>
+        <section class="panel mix" aria-labelledby="mix-title">
+          <p class="kicker">Источники</p><h2 id="mix-title">Энергомикс</h2>
+          <div class="ring" id="ring" aria-hidden="true"><div><strong id="ring-label"></strong><span>из солнца</span></div></div>
+          <div class="legend"><span><i></i> Солнечная</span><strong id="mix-solar"></strong><span><i></i> Электросеть</span><strong id="mix-grid"></strong></div>
+        </section>
+      </div>
+      <section class="panel buildings" id="buildings">
+        <div class="panel-heading"><div><p class="kicker">Объекты</p><h2>Расход по зданиям</h2></div><span class="chart-key" id="table-range"></span></div>
+        <table><thead><tr><th scope="col">Объект</th><th scope="col">Расход, кВт·ч</th><th scope="col">Солнечная доля</th></tr></thead><tbody id="rows"></tbody></table>
+      </section>
+      <footer>VECTOR Grid · Интерфейс на синтетических данных</footer>
+    </main>
+  </div>
+</body>
+</html>
